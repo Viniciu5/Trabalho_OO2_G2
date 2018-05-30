@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: listacompra
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: vinic
+Built-By: William
 Implementation-Vendor-Id: br.edu.ulbra
-Build-Jdk: 1.8.0_172
+Build-Jdk: 1.8.0_151
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/listacompra
 Created-By: Maven Integration for Eclipse
