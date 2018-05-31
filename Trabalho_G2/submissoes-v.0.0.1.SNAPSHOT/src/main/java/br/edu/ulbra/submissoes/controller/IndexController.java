@@ -1,4 +1,4 @@
-package br.edu.ulbra.listacompra.controller;
+package br.edu.ulbra.submissoes.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
