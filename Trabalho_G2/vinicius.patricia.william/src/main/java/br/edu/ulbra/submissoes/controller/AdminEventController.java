@@ -19,7 +19,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin/evento")
-public class AdminVinhoController {
+public class AdminEventController {
 	@Value("${submissoes.uploadFilePath}")
 	private String uploadFilePath;
 	
