@@ -27,12 +27,12 @@ public class Event {
         this.id = id;
     }
 
-    public String getDescription() {
+    public String getArtigo() {
         return artigo;
     }
 
-    public void setDescription(String description) {
-        this.artigo = description.trim();
+    public void setArtigo(String artigo) {
+        this.artigo = artigo.trim();
     }
 
     public Set<User> getUsers() {

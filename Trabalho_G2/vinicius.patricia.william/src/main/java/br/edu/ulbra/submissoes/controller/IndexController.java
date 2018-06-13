@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.edu.ulbra.submissoes.model.*;
 import br.edu.ulbra.submissoes.repository.EventRepository;
 
 @Controller
@@ -29,6 +30,7 @@ public class IndexController {
 	@RequestMapping("/inicio")
 	public ModelAndView home() {
 		ModelAndView mv = new ModelAndView("home");
+		return mv;
 
 		}
 
@@ -38,6 +40,7 @@ public class IndexController {
 	@RequestMapping("/minhalista")
 	public ModelAndView minhalista() {
 		ModelAndView mv = new ModelAndView("lista");
+		return mv;
 		}
 
 	@GetMapping("/login")
