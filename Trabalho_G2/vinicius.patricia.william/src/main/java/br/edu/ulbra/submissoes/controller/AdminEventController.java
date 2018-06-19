@@ -46,7 +46,7 @@ public class AdminEventController {
     @GetMapping("/{eventId}")
     public  ModelAndView listarEvento(@PathVariable(name="eventId") Long eventId){
     	
-        ModelAndView mv = new ModelAndView("evento/verEvento");
+        ModelAndView mv = new ModelAndView("evento/lista");
         Event evento = eventRepository.findById(eventId).get();
         EventInput artigoIn = new EventInput();
         mv.addObject("artigoInput",artigoIn);
