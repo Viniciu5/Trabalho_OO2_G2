@@ -33,10 +33,4 @@ public class IndexController {
 		mv.addObject("events", eventos);
 		return mv;
 	}
-
-	@GetMapping("/login")
-	public ModelAndView loginForm(){
-		return new ModelAndView("login/login");
-	}
-
 }
