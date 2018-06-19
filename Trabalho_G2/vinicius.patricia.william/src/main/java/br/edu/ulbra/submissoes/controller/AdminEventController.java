@@ -20,8 +20,6 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/admin/evento")
 public class AdminEventController {
-	@Value("${submissoes.uploadFilePath}")
-	private String uploadFilePath;
 	
 	@Autowired
 	EventRepository eventRepository;
