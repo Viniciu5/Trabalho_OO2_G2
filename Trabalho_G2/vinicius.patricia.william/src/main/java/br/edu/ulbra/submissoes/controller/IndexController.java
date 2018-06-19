@@ -39,8 +39,4 @@ public class IndexController {
 		return new ModelAndView("login/login");
 	}
 
-	@GetMapping("/denied")
-	public ModelAndView denied(){
-		return new ModelAndView("denied");
-	}
 }
