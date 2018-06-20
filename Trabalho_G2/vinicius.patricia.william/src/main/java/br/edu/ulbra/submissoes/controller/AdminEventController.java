@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,21 +25,10 @@ public class AdminEventController {
 	@Autowired
 	EventRepository eventRepository;
 
-
-	private ModelMapper mapper = new ModelMapper();
-
 	@RequestMapping()
 	public ModelAndView listaEventos() {
 		ModelAndView mv = new ModelAndView("admin/evento/lista");
 		List<Event> eventos = (List<Event>) eventRepository.findAll();
-		mv.addObject("eventos", eventos);
-		return mv;
-	}
-
-	@GetMapping("/novo")
-	public ModelAndView novoEventoForm(@ModelAttribute("artigo") EventInput evento){
-		List<Event> eventos = (List<Event>)eventRepository.findAll();
-		ModelAndView mv = new ModelAndView("admin/evento/novo");
 		mv.addObject("eventos", eventos);
 		return mv;
 	}
@@ -48,19 +38,17 @@ public class AdminEventController {
     	
         ModelAndView mv = new ModelAndView("evento/lista");
         Event evento = eventRepository.findById(eventId).get();
-        EventInput artigoIn = new EventInput();
-        mv.addObject("artigoInput",artigoIn);
-        mv.addObject("artigo", evento.getArtigo());
+        EventInput artigo = new EventInput();
+        mv.addObject("artigo", artigo);
         mv.addObject("evento", evento);
         
         return mv;
     }
 
 	@PostMapping("/{eventId}")
-	public void salvarEvento(@PathVariable("eventId") Long eventoId, EventInput artigoInput, RedirectAttributes redirectAttrs) throws IOException {
+	public void salvarEvento(@PathVariable("eventId") Long eventoId, EventInput artigoInput) throws IOException {
 		Event evento = eventRepository.findById(eventoId).get();
 		evento.setArtigo(artigoInput.getArtigo());
-
 		eventRepository.save(evento);
 	}
 

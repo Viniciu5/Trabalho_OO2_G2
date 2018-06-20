@@ -1,7 +1,6 @@
 package br.edu.ulbra.submissoes.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 public class Event {
@@ -9,6 +8,9 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+	@OneToOne(optional = false)
+	private User user;
 
     @Column(nullable=false)
     private String artigo;
@@ -20,6 +22,14 @@ public class Event {
     public void setId(Long id) {
         this.id = id;
     }
+    
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
     public String getArtigo() {
         return artigo;
