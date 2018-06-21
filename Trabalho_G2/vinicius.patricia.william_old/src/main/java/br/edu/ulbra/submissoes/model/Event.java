@@ -2,22 +2,18 @@ package br.edu.ulbra.submissoes.model;
 
 import javax.persistence.*;
 
-import br.edu.ulbra.submissoes.model.User;
-
-import java.util.Set;
-
 @Entity
 public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+	@OneToOne(optional = false)
+	private User user;
 
     @Column(nullable=false)
     private String artigo;
-
-    @OneToMany(mappedBy = "event")
-    private Set<User> users;
 
     public Long getId() {
         return id;
@@ -26,20 +22,21 @@ public class Event {
     public void setId(Long id) {
         this.id = id;
     }
+    
+	public User getUser() {
+		return user;
+	}
 
-    public String getDescription() {
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+    public String getArtigo() {
         return artigo;
     }
 
-    public void setDescription(String description) {
-        this.artigo = description.trim();
+    public void setArtigo(String artigo) {
+        this.artigo = artigo.trim();
     }
 
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
 }

@@ -1,13 +1,13 @@
 package br.edu.ulbra.submissoes.model;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false)
@@ -22,20 +22,12 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @ManyToMany
-    @JoinTable(name="user_role",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
-            )
-    private List<Role> roles;
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
+	@ManyToMany
+	@JoinTable(name="user_role", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id"))
+	private Set<Role> roles;   
+	
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Event> evento;
 
     public Long getId() {
         return id;
@@ -76,4 +68,20 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+    
+	public Set<Event> getEvento() {
+		return evento;
+	}
+
+	public void setEvento(Set<Event> evento) {
+		this.evento = evento;
+	}
 }

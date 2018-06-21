@@ -26,8 +26,11 @@ public class User {
 	@JoinTable(name="user_role", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id"))
 	private Set<Role> roles;   
 	
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Event> evento;
+	
+	@ManyToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Article> artigo;
 
     public Long getId() {
         return id;
@@ -83,5 +86,13 @@ public class User {
 
 	public void setEvento(Set<Event> evento) {
 		this.evento = evento;
+	}
+	
+	public Set<Article> getArtigo() {
+		return artigo;
+	}
+
+	public void setArtigo(Set<Article> artigo) {
+		this.artigo = artigo;
 	}
 }

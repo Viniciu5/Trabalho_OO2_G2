@@ -20,6 +20,14 @@ public class UserController {
     UserController(UserService userService){
         this.userService = userService;
     }
+    
+    @RequestMapping("/novo")
+	public ModelAndView novo() {
+    	User user = new User();
+		ModelAndView mv = new ModelAndView("/usuario/novo");
+		mv.addObject(user);
+		return mv;
+	}
 
     @GetMapping("/{userId}")
     @ApiOperation(value="Exibe dados do usuário")
@@ -62,5 +70,4 @@ public class UserController {
         }
         return "OK";
     }
-
 }

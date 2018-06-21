@@ -6,6 +6,5 @@ create table user (
   password varchar(255) not null,
   primary key (id),
   unique key UK_USERNAME(username),
-  unique key UK_EMAIL(email),
-  foreign key (event_id) references event(id)
+  unique key UK_EMAIL(email)
 )
