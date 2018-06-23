@@ -36,7 +36,7 @@
 		<div class="ui divided items">
 			<div class="item" th:each="event: ${events}">
 				<div class="content">
-					<a class="header" th:text="${event.nome}" th:href="@{ /eventos/evento/{id}(id=${event.id}) }"></a>
+					<a class="header" th:text="${event.name}" th:href="@{ /eventos/evento/{id}(id=${event.id}) }"></a>
 				</div>
 			</div>
 		</div>

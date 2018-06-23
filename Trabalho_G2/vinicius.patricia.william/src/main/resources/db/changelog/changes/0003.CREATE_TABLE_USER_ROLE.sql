@@ -1,5 +1,5 @@
 create table user_role (
-  id int auto_increment not null,
+  id bigint auto_increment not null,
   user_id bigint not null,
   role_id bigint not null,
   primary key (id),

@@ -22,11 +22,11 @@ public class Event {
     @Column(nullable=false)
     private String name;
     
-	@Column(nullable = false)
+	@Column(nullable = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date abertura;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechamento;
 
@@ -48,6 +48,10 @@ public class Event {
 
     public String getName() {
         return name;
+    }
+    
+    public void setName(String name) {
+    	this.name = name;
     }
 
 	public Set<Article> getArtigos() {

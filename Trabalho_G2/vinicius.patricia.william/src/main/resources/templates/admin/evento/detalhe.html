@@ -23,7 +23,7 @@
 	</h2>
 	<div class="ui stacked segments">
 		<div class="ui left aligned segment">
-			<a href="/admin/vinho" class="ui blue basic button">
+			<a href="/admin/evento" class="ui blue basic button">
 				<i class="chevron left icon"></i>
 				Voltar
 			</a>
@@ -36,7 +36,7 @@
 							<div class="ui label">
 								Nome:
 							</div>
-							<input type="text" id="nome" th:field="*{nome}" placeholder="Nome do evento" required="required"/>
+							<input type="text" id="name" th:field="*{name}" placeholder="Nome do evento" required="required"/>
 							<i class="talk icon"></i>
 						</div>
 					</div>
@@ -59,7 +59,7 @@
 				<div class="item" th:each="article: ${articles}">
 					<div class="content">
 						<div class="header">
-							<span th:text="${article.user.nome}"></span>
+							<span th:text="${article.user.name}"></span>
 							<span> - </span>
 							<span th:text="${#dates.format(article.data, 'dd-MM-yyyy')}"></span>
 						</div>

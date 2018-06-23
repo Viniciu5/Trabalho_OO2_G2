@@ -32,7 +32,7 @@
 			<div class="ui items">
 				<div class="item">
 					<div class="content">
-						<div class="header" th:text="${event.nome}"></div>
+						<div class="header" th:text="${event.name}"></div>
 					</div>
 					<div class="content">
 						<a class="ui right floated blue button" th:href="@{ /eventos/evento/{id}/artigo(id=${event.id}) }">
@@ -55,11 +55,11 @@
 				<div class="item" th:each="article: ${articles}">
 					<div class="content">
 						<div class="header">
-							<span th:text="${article.user.nome}"></span>
+							<span th:text="${article.user.name}"></span>
 							<span> - </span>
-							<span th:text="${#dates.format(avaliation.data, 'dd-MM-yyyy')}"></span>
+							<span th:text="${#dates.format(article.data, 'dd-MM-yyyy')}"></span>
 						</div>
-						<div class="meta" th:text="${article.nome}"></div>
+						<div class="meta" th:text="${article.titulo}"></div>
 						<div class="meta" th:text="${article.resumo}"></div>
 					</div>
 				</div>

@@ -22,7 +22,7 @@ public class Article {
 	@Column(nullable = false)
 	private String resumo;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date data;
 
