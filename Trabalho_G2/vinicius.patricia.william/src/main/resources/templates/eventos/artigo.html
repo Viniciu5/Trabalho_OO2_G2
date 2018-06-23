@@ -54,6 +54,12 @@
 				<form class="ui form" method="POST" th:object="${article}" th:action="@{/eventos/evento/{id}/artigo(id=${event.id})}">
 					<div class="two fields">
 						<div class="field">
+							<label>Titulo</label>
+							<textarea name="titulo" th:field="*{titulo}"></textarea>
+						</div>
+					</div>
+					<div class="two fields">
+						<div class="field">
 							<label>Resumo</label>
 							<textarea name="resumo" th:field="*{resumo}"></textarea>
 						</div>

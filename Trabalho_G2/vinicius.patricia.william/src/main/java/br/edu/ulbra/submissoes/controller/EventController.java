@@ -85,7 +85,7 @@ public class EventController {
 		return mv;
 	}
 
-	@GetMapping("/vinho/{id}/artigo")
+	@GetMapping("/evento/{id}/artigo")
 	public ModelAndView artigoForm(@PathVariable("id") Long idEvent, RedirectAttributes redirectAttrs){
 		Event event = eventRepository.findById(idEvent).get();
 
@@ -94,7 +94,7 @@ public class EventController {
 			return new ModelAndView(RedirectConstants.REDIRECT_INICIO);
 		}
 
-		ModelAndView mv = new ModelAndView("vinhos/avaliar");
+		ModelAndView mv = new ModelAndView("eventos/artigo");
 		Article artigo = articleRepository.findByUserAndEvento(securityService.findLoggedInUser(), event);
 		ArtigoInput artigoInput = mapper.map((artigo == null ? new Article() : artigo), ArtigoInput.class);
 		mv.addObject("article", artigoInput);
