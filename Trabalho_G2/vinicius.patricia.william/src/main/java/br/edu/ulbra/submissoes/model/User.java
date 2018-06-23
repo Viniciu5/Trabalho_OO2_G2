@@ -14,10 +14,7 @@ public class User {
     private String username;
 
     @Column(nullable = false)
-    private String email;
-
-    @Column(nullable = false)
-    private String nome;
+    private String name;
 
     @Column(nullable = false)
     private String password;
@@ -48,20 +45,12 @@ public class User {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {

@@ -20,7 +20,7 @@ public class Event {
 	private Set<Article> artigos;
 
     @Column(nullable=false)
-    private String nome;
+    private String name;
     
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -46,8 +46,8 @@ public class Event {
 		this.user = user;
 	}
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
 	public Set<Article> getArtigos() {

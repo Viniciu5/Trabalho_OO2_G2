@@ -59,6 +59,8 @@ public class UserService {
             throw new UserException("Usuário não encontrado");
         }
     }
+    
+   
 
     public void delete(Long userId) throws UserException{
         User user = findById(userId);
