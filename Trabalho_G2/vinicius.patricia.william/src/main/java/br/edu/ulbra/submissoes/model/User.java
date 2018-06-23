@@ -9,15 +9,15 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(nullable = false)
+    
     private String username;
-
-    @Column(nullable = false)
+    
     private String name;
-
-    @Column(nullable = false)
+    
     private String password;
+    
+	@Transient
+	private String passwordConfirm;
 
 	@ManyToMany
 	@JoinTable(name="user_role", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id"))
