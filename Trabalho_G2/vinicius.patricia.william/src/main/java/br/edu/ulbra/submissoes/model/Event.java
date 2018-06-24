@@ -54,7 +54,10 @@ public class Event {
     	this.name = name;
     }
 
-	public Set<Article> getArtigos() {
+	public Set<Article> getArtigos() {		
+		/*for(Article artigo : this.artigos){
+			System.out.println(artigo.getTitulo()+" - "+ artigo.getUser().getName());
+		}*/
 		return artigos;
 	}
 
