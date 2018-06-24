@@ -86,5 +86,6 @@ public class UserController {
 
 		redirectAttrs.addFlashAttribute("success", "Usuário cadastrado com sucesso. Você já pode entrar no sistema.");
 		return "redirect:/";
-	}
+	}	
+	
 }
