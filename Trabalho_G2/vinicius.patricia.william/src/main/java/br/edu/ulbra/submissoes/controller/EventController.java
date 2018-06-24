@@ -3,6 +3,7 @@ package br.edu.ulbra.submissoes.controller;
 import br.edu.ulbra.submissoes.config.RedirectConstants;
 import br.edu.ulbra.submissoes.config.StringConstants;
 import br.edu.ulbra.submissoes.input.ArtigoInput;
+import br.edu.ulbra.submissoes.input.EventInput;
 import br.edu.ulbra.submissoes.model.Article;
 import br.edu.ulbra.submissoes.model.Role;
 import br.edu.ulbra.submissoes.model.Event;
@@ -13,12 +14,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -34,7 +37,7 @@ public class EventController {
 
 	private ModelMapper mapper = new ModelMapper();
 
-	@RequestMapping("/minhalista")
+	@RequestMapping("/listarEventos")
 	public ModelAndView minhaLista() {
 		ModelAndView mv = new ModelAndView("eventos/listarEventos");
 		mv.addObject(StringConstants.USER_LOGGED, securityService.findLoggedInUser());
@@ -52,7 +55,7 @@ public class EventController {
 		}
 
 		List<Article> articles = articleRepository.findByUser(securityService.findLoggedInUser());
-		mv.addObject("article", articles);
+		mv.addObject("articles", articles);
 		return mv;
 	}
 
@@ -144,4 +147,43 @@ public class EventController {
 
 		return "redirect:/eventos/evento/" + idEvent;
 	}
+	
+	@GetMapping("/novo")
+	public ModelAndView novoEventoForm(@ModelAttribute("event") EventInput event){
+
+		ModelAndView mv = new ModelAndView("eventos/novo");
+		mv.addObject(StringConstants.USER_LOGGED, securityService.findLoggedInUser());
+		if (securityService.findLoggedInUser() != null && securityService.findLoggedInUser().getRoles() != null) {
+			for(Role p : securityService.findLoggedInUser().getRoles()){
+				if (p.getName().equals(StringConstants.ROLE_ADMIN)) {
+					mv.addObject(StringConstants.ADMIN, true);
+					break;
+				}
+				else {
+					mv.addObject(StringConstants.ADMIN, false);
+				}
+			}
+		}
+
+		mv.addObject("event", event);
+		return mv;
+	}
+
+	@PostMapping("/novo")
+	public String novoEvento(EventInput eventInput, RedirectAttributes redirectAttrs) throws IOException {
+		if (eventInput.getName().length() == 0)
+		{
+			redirectAttrs.addFlashAttribute(StringConstants.ERROR, "Você precisa informar todos os campos.");
+			redirectAttrs.addFlashAttribute("event", eventInput);
+			return "redirect:/eventos/novo";
+		}
+
+		Event event = mapper.map(eventInput, Event.class);
+		event.setUser(securityService.findLoggedInUser());
+		eventRepository.save(event);
+
+		redirectAttrs.addFlashAttribute(StringConstants.SUCCESS, "Evento cadastrado com sucesso.");
+		return RedirectConstants.REDIRECT_INICIO;
+	}
+
 }
