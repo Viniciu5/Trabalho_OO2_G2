@@ -6,6 +6,7 @@ import br.edu.ulbra.submissoes.input.ArtigoInput;
 import br.edu.ulbra.submissoes.input.EventInput;
 import br.edu.ulbra.submissoes.model.Article;
 import br.edu.ulbra.submissoes.model.Role;
+import br.edu.ulbra.submissoes.model.User;
 import br.edu.ulbra.submissoes.model.Event;
 import br.edu.ulbra.submissoes.repository.ArticleRepository;
 import br.edu.ulbra.submissoes.repository.EventRepository;
@@ -185,5 +186,17 @@ public class EventController {
 		redirectAttrs.addFlashAttribute(StringConstants.SUCCESS, "Evento cadastrado com sucesso.");
 		return RedirectConstants.REDIRECT_INICIO;
 	}
+	
+	@PostMapping("/{id}/delete")
+	public String deletarEvento(@PathVariable("id") Long idEvento, RedirectAttributes redirectAttrs) {
+		Event evento = eventRepository.findById(idEvento).get();
+		if (evento == null) {
+			redirectAttrs.addFlashAttribute(StringConstants.ERROR, "Não existe evento com essa identificação.");
+		} else {
+			eventRepository.delete(evento);
+			redirectAttrs.addFlashAttribute(StringConstants.SUCCESS, "Evento deletado com sucesso.");
+		}
 
+		return RedirectConstants.REDIRECT_INICIO;
+	}
 }
