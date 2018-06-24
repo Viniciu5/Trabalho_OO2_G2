@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>Submissão - Minha Lista</title>
+	<title>Submissão - Lista de Eventos</title>
 	<link rel="stylesheet" href="/css/third/semantic.min.css"/>
 	<link rel="stylesheet" href="/css/main.css"/>
 	<link rel="stylesheet" href="/css/login.css"/>
@@ -15,7 +15,7 @@
 	<div class="ui fluid buttons">
 		<a href="/inicio" class="ui button">Início</a>
 		<div class="or" data-text="ou"></div>
-		<a href="/eventos/listarEventos" class="ui disabled button">Minha Lista</a>
+		<a href="/eventos/listarEventos" class="ui disabled button">Todos os Eventos</a>
 	</div>
 </div>
 <div class="ui container" th:if="${error}">
@@ -28,20 +28,20 @@
 	<div id="titleContainer" class="ui items">
 		<div class="item">
 			<div class="content">
-				<h1 class="ui header">Minha lista de Eventos</h1>
+				<h1 class="ui header">Lista de Eventos</h1>
 			</div>
 		</div>
 	</div>
 	<div class="ui divider clear"></div>
 	<div class="ui divided items">
-		<div class="item" th:each="article: ${articles}">
+		<div class="item" th:each="article : ${articles}">
 			<div class="content">
 				<div class="header">
-					<span th:text="${article.evento.nome}"></span>
+					<span th:text="${article.evento.name}"></span>
 					<span> - </span>
 					<span th:text="${#dates.format(article.data, 'dd-MM-yyyy')}"></span>
 				</div>
-				<div class="meta" th:text="${article.vinho.nome}"></div>
+				<div class="meta" th:text="${article.evento.name}"></div>
 				<div class="description" th:text="${article.resumo}"></div>
 			</div>
 		</div>
