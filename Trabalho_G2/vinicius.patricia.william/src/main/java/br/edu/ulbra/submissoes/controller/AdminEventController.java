@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/admin/vinho")
+@RequestMapping("/admin/evento")
 public class AdminEventController {
 	
 	@Autowired
