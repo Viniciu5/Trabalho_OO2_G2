@@ -40,5 +40,4 @@ public class ArtigoInput {
 	public void setNomeTexto(String nomeTexto) {
 		this.nomeTexto = nomeTexto;
 	}
-
 }
