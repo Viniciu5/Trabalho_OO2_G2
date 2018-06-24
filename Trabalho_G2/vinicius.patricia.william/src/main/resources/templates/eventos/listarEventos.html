@@ -40,6 +40,11 @@
 					<span th:text="${article.evento.name}"></span>
 					<span> - </span>
 					<span th:text="${#dates.format(article.data, 'dd-MM-yyyy')}"></span>
+					<span> - </span>		
+					<span th:text="${article.evento.id}"></span>			
+					<form th:action="@{/eventos/{id}/delete(id=${article.evento.id})}" method="POST">  						
+  						<button type="submit" value="Submit">Deletar</button>  						
+					</form>
 				</div>
 				<div class="meta" th:text="${article.evento.name}"></div>
 				<div class="description" th:text="${article.resumo}"></div>
