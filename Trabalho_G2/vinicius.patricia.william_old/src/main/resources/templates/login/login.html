@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>Login</title>
+	<title>Submissões</title>
 	<link rel="stylesheet" href="/css/third/semantic.min.css"/>
 	<link rel="stylesheet" href="/css/main.css"/>
 	<link rel="stylesheet" href="/css/login.css"/>
@@ -39,12 +39,12 @@
 					<div class="two fields">
 						<div class="field">
 							<input type="submit" id="login" class="ui fluid blue button" value="Entrar"/>
-						</div>						
+						</div>
+						<div class="field">
+							<a class="ui fluid blue basic button" href="/usuario/novo">Novo Usuário</a>
+						</div>
 					</div>
 				</form>
-				<div class="field">
-					<a class="ui fluid blue basic button" href="/usuario/novo">Novo Usuario</a>
-				</div>
 			</div>
 			<div class="ui red message" th:if="${error}"><span th:text="${error}"/></div>
 			<div class="ui green message" th:if="${success}"><span th:text="${success}"/></div>

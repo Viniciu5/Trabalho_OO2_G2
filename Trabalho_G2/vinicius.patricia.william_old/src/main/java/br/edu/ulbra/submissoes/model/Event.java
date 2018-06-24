@@ -4,9 +4,6 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.*;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import br.edu.ulbra.submissoes.model.Article;
 
 @Entity
@@ -26,11 +23,11 @@ public class Event {
     private String name;
     
 	@Column(nullable = true)
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date abertura;
 	
 	@Column(nullable = true)
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechamento;
 
     public Long getId() {

@@ -1,41 +1,33 @@
 package br.edu.ulbra.submissoes.model;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(nullable = false)
+    
     private String username;
-
-    @Column(nullable = false)
-    private String email;
-
-    @Column(nullable = false)
-    private String nome;
-
-    @Column(nullable = false)
+    
+    private String name;
+    
     private String password;
+    
+	@Transient
+	private String passwordConfirm;
 
-    @ManyToMany
-    @JoinTable(name="user_role",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
-            )
-    private List<Role> roles;
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
+	@ManyToMany
+	@JoinTable(name="user_role", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns = @JoinColumn(name="role_id"))
+	private Set<Role> roles;   
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Event> evento;
+	
+	@ManyToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Article> artigo;
 
     public Long getId() {
         return id;
@@ -53,20 +45,12 @@ public class User {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -76,4 +60,28 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+    
+	public Set<Event> getEvento() {
+		return evento;
+	}
+
+	public void setEvento(Set<Event> evento) {
+		this.evento = evento;
+	}
+	
+	public Set<Article> getArtigo() {
+		return artigo;
+	}
+
+	public void setArtigo(Set<Article> artigo) {
+		this.artigo = artigo;
+	}
 }

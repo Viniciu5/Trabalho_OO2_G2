@@ -122,7 +122,7 @@ public class EventController {
 	}
 
 	@PostMapping("/evento/{id}/artigo")
-	public String enviarArtigo(@PathVariable("id") Long idEvent, ArtigoInput artigoInput, RedirectAttributes redirectAttrs){
+	public String enviarAvaliacao(@PathVariable("id") Long idEvent, ArtigoInput artigoInput, RedirectAttributes redirectAttrs){
 		Event event = eventRepository.findById(idEvent).get();
 		if (event == null) {
 			redirectAttrs.addFlashAttribute(StringConstants.ERROR, StringConstants.ERROR_EVENTO_NAO_EXISTE);
@@ -181,8 +181,6 @@ public class EventController {
 
 		Event event = mapper.map(eventInput, Event.class);
 		event.setUser(securityService.findLoggedInUser());
-		event.setAbertura(new Date());
-		event.setFechamento(new Date());
 		eventRepository.save(event);
 
 		redirectAttrs.addFlashAttribute(StringConstants.SUCCESS, "Evento cadastrado com sucesso.");
