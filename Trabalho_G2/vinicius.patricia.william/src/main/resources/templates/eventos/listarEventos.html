@@ -38,9 +38,12 @@
 			<div class="content">
 				<div class="header">
 					<span th:text="${article.evento.name}"></span>
-					<span> - </span>
-					<span th:text="${#dates.format(article.data, 'dd-MM-yyyy')}"></span>
-					<span> - </span>		
+					<span> - </span>						
+					Data de Inicio : 	
+					<span th:text="${#dates.format(article.evento.abertura, 'dd-MM-yyyy')}"></span>
+					<span> - </span>	
+					Data de Encerramento : 	
+					<span th:text="${#dates.format(article.evento.fechamento, 'dd-MM-yyyy')}"></span>
 					<span th:text="${article.evento.id}"></span>			
 					<form th:action="@{/eventos/{id}/delete(id=${article.evento.id})}" method="POST">  						
   						<button type="submit" value="Submit">Deletar</button>  						
